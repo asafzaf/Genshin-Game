@@ -38,3 +38,23 @@ void Character::PrintCharacter() {
 		<< getEqWeapon() << "\t"
 		<< getStars() << endl;
 }
+
+int Character::locationInNumber() {
+	const char* tempchar = getLocation();
+	if (tempchar == "Europe") {
+		return 0;
+	}
+	else if (tempchar == "Asia") {
+		return 1;
+	}
+	else if (tempchar == "Mars") {
+		return 2;
+	}
+	else if (tempchar == "Moon") {
+		return 3;
+	}
+	else if (tempchar == "Saturn") {
+		return 4;
+	}
+	else return -1;
+}

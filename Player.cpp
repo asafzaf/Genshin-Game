@@ -257,3 +257,31 @@ Element Player::chooseElement() {
 		return Uninitialized;
 	}
 }
+
+void Player::evaluate() {
+	int A_Location[6] = {0}, A_Type[7] = {0}, A_Weapon[5] = {0};
+	Character** temp_char_array = getActiveCharacter();
+
+	for (int i = 0; i < 4; i++) {
+		A_Location[temp_char_array[i]->locationInNumber()]++;
+		A_Type[temp_char_array[i]->getElementType()]++;
+		A_Weapon[temp_char_array[i]->getWeaponType()]++;
+	}
+
+	for (int i = 0; i < 6; i++) {
+		cout << A_Location[i] << " ";
+	}
+	cout << endl;
+
+	for (int i = 0; i < 7; i++) {
+		cout << A_Type[i] << " ";
+	}
+	cout << endl;
+
+	for (int i = 0; i < 5; i++) {
+		cout << A_Weapon[i] << " ";
+	}
+	cout << endl;
+
+
+}

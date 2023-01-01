@@ -22,6 +22,7 @@ public:
 	//---      Methods      ---//
 	virtual int Attack();
 	virtual void PrintCharacter();
+	int locationInNumber();
 
 	//--- Getters & setters ---//
 	char* getName() { return m_name; }
@@ -37,6 +38,5 @@ public:
 	char* getEqWeapon() { return m_equippedWeapon; }
 
 	int getStars() { return m_stars; }
-
 
 };

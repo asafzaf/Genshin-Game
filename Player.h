@@ -24,6 +24,7 @@ public:
 	Weapon chooseWeapon();
 	const char* chooselocation();
 	Element chooseElement();
+	void evaluate();
 
 	//--- Getters & setters ---//
 	char* getUserName() { return m_userName; }

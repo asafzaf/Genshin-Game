@@ -28,6 +28,7 @@ int main() {
 
 		switch (choice) {
 		case 0:
+			cout << "Bye!";
 			return 0;
 		case 1:
 			player->addCharacter();
@@ -42,7 +43,7 @@ int main() {
 			choice = -1;
 			break;
 		case 4:
-
+			player->evaluate();
 			choice = -1;
 			break;
 		case 5: // for tests
