@@ -20,11 +20,23 @@ public:
 	~Character();
 
 	//---      Methods      ---//
-	virtual int Attak();
-	int EditWeapon(char* weapon);
+	virtual int Attack();
+	virtual void PrintCharacter();
 
 	//--- Getters & setters ---//
-	char* getUserName() { return m_name; }
-	void setUserName(char* name) { m_name = name; }
+	char* getName() { return m_name; }
+	void setName(char* name) { m_name = name; }
+
+	const char* getLocation() { return m_location; }
+
+	Element getElementType() { return m_type; }
+
+	Weapon getWeaponType() { return m_weaponType; }
+	void setWeaponType(Weapon type) { m_weaponType = type; }
+
+	char* getEqWeapon() { return m_equippedWeapon; }
+
+	int getStars() { return m_stars; }
+
 
 };

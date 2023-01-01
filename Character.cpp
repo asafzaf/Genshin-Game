@@ -1,10 +1,12 @@
 #include <iostream>
 #include "Character.h"
 
+using namespace std;
+
 Character::Character(char* name, const char* location, Element E_type, Weapon W_type, char* eq_wea, int star) {
 	int namelen = strlen(name);
 	m_name = new char[namelen + 1];
-	strncpy(m_name, name, namelen);
+	strcpy(m_name, name);
 
 	m_location = location;
 
@@ -13,7 +15,7 @@ Character::Character(char* name, const char* location, Element E_type, Weapon W_
 
 	int weaponlen = strlen(eq_wea);
 	m_equippedWeapon = new char[weaponlen + 1];
-	strncpy(m_equippedWeapon, eq_wea, weaponlen);
+	strcpy(m_equippedWeapon, eq_wea);
 
 	m_stars = star;
 }
@@ -24,7 +26,15 @@ Character::~Character() {
 }
 
 //---      Methods      ---//
-int Character::Attak() {
+int Character::Attack() {
 	return 10;
 }
-int EditWeapon(char* weapon); // ??
+
+void Character::PrintCharacter() {
+	cout << getName() << "\t"
+		<< getLocation() << "\t"
+		<< getElementType() << "\t"
+		<< getWeaponType() << "\t"
+		<< getEqWeapon() << "\t"
+		<< getStars() << endl;
+}

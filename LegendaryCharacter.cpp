@@ -1,8 +1,24 @@
 #include <iostream>
 #include "LegendaryCharacter.h"
 
+using namespace std;
+
 LegendaryCharacter::LegendaryCharacter(char* name, const char* location, Element E_type, Weapon W_type, char* eq_wea, int star, char* signeture) : Character(name, location, E_type, W_type, eq_wea, star) {
 	int signlen = strlen(signeture);
-	m_name = new char[signlen + 1];
-	strncpy(m_signatureWeapon, signeture, signlen);
+	m_signatureWeapon = new char[signlen + 1];
+	strcpy(m_signatureWeapon, signeture);
+}
+
+void LegendaryCharacter::printCharacter() {
+	cout << getName() << "\t"
+		<< getLocation() << "\t"
+		<< getElementType() << "\t"
+		<< getWeaponType() << "\t"
+		<< getEqWeapon() << "\t"
+		<< getStars() << "\t"
+		<< getSignatureWeapon() << endl;
+}
+
+int LegendaryCharacter::Attack() {
+	return 40;
 }

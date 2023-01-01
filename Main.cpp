@@ -6,37 +6,52 @@
 
 using namespace std;
 
-void main() {
+int main() {
 
 	Player* player = new Player();
 
-	int choice = 5;
-	while (choice > 4 || choice < 0) {
-		// menu print...
-		
+	int choice = -1;
+	while (choice > 5 || choice < 0) {
+
+		//Main menu
+		cout << "************************" << endl
+			<< "Hello " << player->getUserName() << "!" << endl
+			<< "************************" << endl
+			<< "Please Choose an option:" << endl
+			<< "1- Add data character" << endl
+			<< "2- Change weapon" << endl
+			<< "3- Set active character" << endl
+			<< "4- Print evaluate" << endl
+			<< ">> ";
+
 		cin >> choice;
 
 		switch (choice) {
 		case 0:
-			return;
+			return 0;
 		case 1:
 			player->addCharacter();
-			choice = 5;
+			choice = -1;
 			break;
 		case 2:
-
-			choice = 5;
+			player->changeWeapon();
+			choice = -1;
 			break;
 		case 3:
-			choice = 5;
+			player->setCharacterToActive();
+			choice = -1;
 			break;
 		case 4:
-			choice = 5;
+
+			choice = -1;
 			break;
+		case 5: // for tests
+			choice = -1;
+			cout << player->getUserName() << endl;
 		default:
 			cout << "Invalid choice! please try again..." << endl;
-			choice = 5;
+			choice = -1;
 		}
 	}
-	return;
+	return 0;
 }

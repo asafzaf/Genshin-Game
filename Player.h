@@ -11,7 +11,7 @@ private:
 	char* m_userName;
 	Character** m_activeCharacters;
 	Character** m_dataCharacters;
-	int num_of_dataChars;
+	int m_num_of_dataChars;
 public:
 	Player(); // Initializing player.
 	~Player(); // distruct player and all of the data.
@@ -19,11 +19,18 @@ public:
 	//---      Methods      ---//
 	void addCharacter();
 	Character* selectCharacter();
-	Weapon chooseANDchangeWeapon();
+	void setCharacterToActive();
+	void changeWeapon();
+	Weapon chooseWeapon();
 	const char* chooselocation();
 	Element chooseElement();
 
 	//--- Getters & setters ---//
 	char* getUserName() { return m_userName; }
 	void setUserName(char* userName) { m_userName = userName; }
+
+	Character** getActiveCharacter() { return m_activeCharacters; }
+	Character** getDataCharacter() { return m_dataCharacters; }
+
+	int getNumOfDataChars() { return m_num_of_dataChars; }
 };

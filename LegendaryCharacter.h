@@ -11,5 +11,8 @@ private:
 	char* m_signatureWeapon;
 public:
 	LegendaryCharacter(char* name, const char* location, Element E_type, Weapon W_type, char* eq_wea, int star, char* si);
+	void printCharacter();
 	int Attack();
+
+	char* getSignatureWeapon() { return m_signatureWeapon; }
 };
