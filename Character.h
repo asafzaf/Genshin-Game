@@ -41,5 +41,4 @@ public:
 
 	int getStars() { return m_stars; }
 
-
 };

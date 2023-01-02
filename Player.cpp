@@ -275,6 +275,7 @@ Element Player::chooseElement() {
 
 void Player::evaluate() {
 	int A_Location[6] = {0}, A_Type[8] = {0}, A_Weapon[6] = {0};
+	int* Arr_locate = A_Location, * Arr_Elem = A_Type, * Arr_Weap = A_Weapon;
 	Character** temp_char_array = getActiveCharacter();
 
 	for (int i = 0; i < 4; i++) {
@@ -303,5 +304,112 @@ void Player::evaluate() {
 	}
 	cout << endl;
 
+	printLocationResaults(Arr_locate);
+	cout << endl << endl;
+	printElementsResaults(Arr_Elem);
+	cout << endl << endl;
+
+
 	return;
+}
+
+void Player::printLocationResaults(int* locationArr) {
+	for (int i = 1; i < 6; i++) {
+		if (locationArr[i] > 1)
+			cout << locationArr[i] << " characters from the same location:" << endl
+			<< "Adding " << (locationArr[i]) * (10) << "% coordinaion!" << endl << endl;
+	}
+}
+
+void Player::printElementsResaults(int* elementArr) {
+	for (int i = 1; i < 8; i++) {
+		if (elementArr[i] > 1)
+			cout << elementArr[i] << " characters are" << elementEnumToText(i) << "elements:" << endl
+			<< "Adding " << (elementArr[i])* (10) << "% " << elementEnumToText(i) << " power!" << endl << endl;
+	}
+	cout << "Passable Elements Reactions:" << endl;
+	if (elementArr[1] > 0 && elementArr[3] > 0) { // Ameno + Cyro - combination.
+		cout << "Blizzard" << endl;
+	}
+	if (elementArr[7] > 0 && elementArr[2] > 0) { // Dendro + Pyro - combination.
+		cout << "Burn" << endl;
+	}
+	if (elementArr[6] > 0 && (elementArr[2] > 0 || elementArr[3] > 0 || elementArr[4] > 0 || elementArr[5] > 0)) { // Crystalize combination.
+		cout << "Crystalize" << endl;
+	}
+	if (elementArr[6] > 0 && elementArr[1] > 0) { // Geo + Ameno - combination.
+		cout << "Dust" << endl;
+	}
+	if (elementArr[5] > 0 && elementArr[4] > 0) { // Electro + Hydro - combination.
+		cout << "Electro-Charged" << endl;
+	}
+	if (elementArr[3] > 0 && elementArr[4] > 0) { // Cyro + Hydro - combination.
+		cout << "Frozen" << endl;
+	}
+	if (elementArr[6] > 0 && elementArr[2] > 0) { // Geo + Pyro - combination.
+		cout << "Magma" << endl;
+	}
+	if (elementArr[3] > 0 && elementArr[2] > 0) { // Cryo + Pyro - combination.
+		cout << "Melt" << endl;
+	}
+	if (elementArr[6] > 0 && elementArr[4] > 0) { // Geo + Hydro - combination.
+		cout << "Mud" << endl;
+	}
+	if (elementArr[5] > 0 && elementArr[2] > 0) { // Electro + Pyro - combination.
+		cout << "Overloaded" << endl;
+	}
+	if (elementArr[7] > 0 && elementArr[4] > 0) { // Dendro + Hydro - combination.
+		cout << "Poison" << endl;
+	}
+	if (elementArr[6] > 0 && elementArr[3] > 0) { // Geo + Cryo - combination.
+		cout << "Shatter" << endl;
+	}
+	if (elementArr[3] > 0 && elementArr[5] > 0) { // Cryo + Electro - combination.
+		cout << "Superconduct" << endl;
+	}
+	if (elementArr[1] > 0 && (elementArr[3] > 0 || elementArr[5] > 0 || elementArr[4] > 0 || elementArr[2] > 0)) { // Swirl combination.
+		cout << "Swirl" << endl;
+	}
+	if (elementArr[6] > 0 && elementArr[7] > 0) { // Geo + Dendro - combination.
+		cout << "Thorn" << endl;
+	}
+	if (elementArr[4] > 0 && elementArr[2] > 0) { // Hydro + Pyro - combination.
+		cout << "Vaporize" << endl;
+	}
+}
+
+void Player::printWeaponsActives() {
+	Character** tempchar = getActiveCharacter();
+	for (int i = 0; i < 4; i++) {
+		if (tempchar[i] == nullptr) {
+			continue;
+		}
+		else {
+			Weapon tempweap = tempchar[i]->getWeaponType();
+			switch (tempweap)
+			{
+			case unarmed:
+				cout << "Err";
+				break;
+			case Sword:
+				cout << tempchar[i]->getName() << " swing swiftly the sword." << endl;
+				break;
+			case Polearm:
+				cout << tempchar[i]->getName() << " agile with polearm." << endl;
+				break;
+			case Catalyst:
+				cout << tempchar[i]->getName() << " cast spells with catalyst." << endl;
+				break;
+			case Claymore:
+				cout << tempchar[i]->getName() << " swing the heavy claymore." << endl;
+				break;
+			case Bow:
+				cout << tempchar[i]->getName() << " shot from afar with the bow." << endl;
+				break;
+			default:
+				cout << "Err";
+				break;
+			}
+		}
+	}
 }

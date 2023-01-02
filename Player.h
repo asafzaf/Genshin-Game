@@ -25,6 +25,10 @@ public:
 	const char* chooselocation();
 	Element chooseElement();
 	void evaluate();
+	void printLocationResaults(int* locationArr);
+	void printElementsResaults(int* elementArr);
+	void printWeaponsActives();
+
 
 	//--- Getters & setters ---//
 	char* getUserName() { return m_userName; }
