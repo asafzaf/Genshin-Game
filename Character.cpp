@@ -31,12 +31,16 @@ int Character::Attack() {
 }
 
 void Character::PrintCharacter() {
+	int stars = getStars();
 	cout << getName() << "\t"
 		<< getLocation() << "\t"
-		<< getElementType() << "\t"
-		<< getWeaponType() << "\t"
-		<< getEqWeapon() << "\t"
-		<< getStars() << endl;
+		<< enumElementToText() << "\t"
+		<< enumWeaponToText() << "\t"
+		<< getEqWeapon() << "\t";
+	for (int i = 0; i < stars; i++) {
+		cout << "*";
+	}
+	cout << endl;
 }
 
 int Character::locationInNumber() {
@@ -57,4 +61,63 @@ int Character::locationInNumber() {
 		return 4;
 	}
 	else return -1;
+}
+
+const char* Character::enumElementToText() {
+	switch (m_type)
+	{
+	case Uninitialized:
+		return "---";
+		break;
+	case Ameno:
+		return "Ameno";
+		break;
+	case Pyro:
+		return "Pyro";
+		break;
+	case Cyro:
+		return "Pyro";
+		break;
+	case Hydro:
+		return "Hydro";
+		break;
+	case Electro:
+		return "Electro";
+		break;
+	case Geo:
+		return "Gro";
+		break;
+	case Dendro:
+		return "Dentro";
+		break;
+	default:
+		return "Err";
+		break;
+	}
+}
+const char* Character::enumWeaponToText() {
+	switch (m_weaponType)
+	{
+	case unarmed:
+		return "---";
+		break;
+	case Sword:
+		return "Sword";
+		break;
+	case Polearm:
+		return "Polearm";
+		break;
+	case Catalyst:
+		return "Catalyst";
+		break;
+	case Claymore:
+		return "Claymore";
+		break;
+	case Bow:
+		return "Bow";
+		break;
+	default:
+		return "Err";
+		break;
+	}
 }

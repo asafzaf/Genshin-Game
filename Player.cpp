@@ -79,9 +79,9 @@ void Player::addCharacter() {
 
 Character* Player::selectCharacter() {
 	Character** temptr = getDataCharacter();
-	cout << "************************" << endl
-		<< "Printing data characters" << endl
-		<< "************************" << endl;
+	cout << "*********************" << endl
+		<< "data characters menu:" << endl
+		<< "*********************" << endl;
 	int i = 0;
 	for ( int i = 0 ; i < m_num_of_dataChars; i++) {
 		cout << i + 1 << "\t";
@@ -90,20 +90,24 @@ Character* Player::selectCharacter() {
 	int choose;
 	cout << "Please enter number for character: ";
 	cin >> choose;
-	Character** tempchoose = getDataCharacter();
-	for (int i = 1; i < choose; i++) {
-		tempchoose++;
+	while (choose - 1 > m_num_of_dataChars) {
+		cout << "Please select from list.. Try again.." << endl << ">> ";
+		cin >> choose;
 	}
-	return *tempchoose;
+	return temptr[choose-1];
 }
 
 void Player::setCharacterToActive() {
+	if (getDataCharacter() == nullptr) {
+		cout << "No Data Characters" << endl;
+		return;
+	}
 	Character* selectedChar = selectCharacter();
 	Character** tempActive = getActiveCharacter();
 	for (int i = 0; i < 4; i++) {
 		cout << i + 1 << "\t";
 		if (tempActive[i] == nullptr) {
-			cout << " *--FREE SPACE--*" << endl;
+			cout << " *---FREE SPACE---*" << endl;
 		}
 		else tempActive[i]->PrintCharacter();
 	}
@@ -116,7 +120,6 @@ void Player::setCharacterToActive() {
 
 void Player::changeWeapon() {
 	Character** selected;
-	Character** temp;
 	Character* ptr = nullptr;
 	int choose = 0;
 	int char_choose = 0;
@@ -130,30 +133,36 @@ void Player::changeWeapon() {
 		cin >> choose;
 		if (choose == 1) {
 			selected = getActiveCharacter();
-			temp = selected;
 			while (char_choose > 4 || char_choose < 1) {
-				cout << "Please choose character: " << endl;
+				int count = 0;
+				cout << "***********************" << endl
+					<< "Active characters menu: " << endl
+					<< "***********************" << endl;
 				for (int i = 0; i < 4; i++) {
-					cout << i + 1 << "\t";
-					temp[i]->PrintCharacter();
-					cin >> char_choose;
+					if (selected[i] == nullptr) {
+						continue;
+					}
+					else {
+						cout << i + 1 << "\t";
+						selected[i]->PrintCharacter();
+						count++;
+					}
+				}
+				cout << "Please choose character: ";
+				cin >> char_choose;
+				if (char_choose > count) {
+					char_choose = 0;
+					cout << "Invalid number of character! Try again..." << endl;
 				}
 			}
-			ptr = temp[char_choose];
+			ptr = selected[char_choose];
 		}
 		if (choose == 2) {
-			selected = getDataCharacter();
-			temp = selected;
-			int i = 0;
-			while (temp != nullptr) {
-				cout << i + 1 << "\t";
-				temp[i]->PrintCharacter();
-			}
 			ptr = selectCharacter();
 		}
 		else ptr = selectCharacter();
 	}
-	cout << "*** COMPLETE ***" << endl;
+	cout << "*** COMPLETE ***" << endl; // for test
 	Weapon weap_choose = chooseWeapon();
 	ptr->setWeaponType(weap_choose);
 	cout << "Weapon has changed seccessfully" << endl;
@@ -263,6 +272,11 @@ void Player::evaluate() {
 	Character** temp_char_array = getActiveCharacter();
 
 	for (int i = 0; i < 4; i++) {
+		if (temp_char_array[i] == nullptr) {
+			cout << "*---FREE SPACE---*" << endl;
+			continue;
+		}
+		temp_char_array[i]->PrintCharacter();
 		A_Location[temp_char_array[i]->locationInNumber()]++;
 		A_Type[temp_char_array[i]->getElementType()]++;
 		A_Weapon[temp_char_array[i]->getWeaponType()]++;
@@ -283,5 +297,5 @@ void Player::evaluate() {
 	}
 	cout << endl;
 
-
+	return;
 }

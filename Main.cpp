@@ -15,7 +15,7 @@ int main() {
 
 		//Main menu
 		cout << "************************" << endl
-			<< "Hello " << player->getUserName() << "!" << endl
+			<< "\tHello " << player->getUserName() << "!" << endl
 			<< "************************" << endl
 			<< "Please Choose an option:" << endl
 			<< "1- Add data character" << endl

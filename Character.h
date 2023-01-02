@@ -10,8 +10,8 @@ class Character {
 protected:
 	char* m_name;
 	const char* m_location;
-	Element m_type;
-	Weapon m_weaponType;
+	enum Element m_type;
+	enum Weapon m_weaponType;
 	char* m_equippedWeapon;
 	int m_stars;
 	
@@ -23,6 +23,8 @@ public:
 	virtual int Attack();
 	virtual void PrintCharacter();
 	int locationInNumber();
+	const char* enumElementToText();
+	const char* enumWeaponToText();
 
 	//--- Getters & setters ---//
 	char* getName() { return m_name; }
@@ -38,5 +40,6 @@ public:
 	char* getEqWeapon() { return m_equippedWeapon; }
 
 	int getStars() { return m_stars; }
+
 
 };
