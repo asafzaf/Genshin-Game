@@ -148,21 +148,27 @@ void Player::changeWeapon() {
 						count++;
 					}
 				}
-				cout << "Please choose character: ";
-				cin >> char_choose;
-				if (char_choose > count) {
-					char_choose = 0;
-					cout << "Invalid number of character! Try again..." << endl;
+				if (count == 0) {
+					cout << "No active characters!" << endl;
+					choose = 0;
+					break;
+				}
+				else {
+					cout << "Please choose character: ";
+					cin >> char_choose;
+					if (char_choose > count) {
+						char_choose = 0;
+						cout << "Invalid number of character! Try again..." << endl;
+					}
+					ptr = selected[char_choose - 1];
 				}
 			}
-			ptr = selected[char_choose];
 		}
-		if (choose == 2) {
+		else if (choose == 2) {
 			ptr = selectCharacter();
 		}
 		else ptr = selectCharacter();
 	}
-	cout << "*** COMPLETE ***" << endl; // for test
 	Weapon weap_choose = chooseWeapon();
 	ptr->setWeaponType(weap_choose);
 	cout << "Weapon has changed seccessfully" << endl;
@@ -268,7 +274,7 @@ Element Player::chooseElement() {
 }
 
 void Player::evaluate() {
-	int A_Location[6] = {0}, A_Type[7] = {0}, A_Weapon[5] = {0};
+	int A_Location[6] = {0}, A_Type[8] = {0}, A_Weapon[6] = {0};
 	Character** temp_char_array = getActiveCharacter();
 
 	for (int i = 0; i < 4; i++) {
@@ -287,12 +293,12 @@ void Player::evaluate() {
 	}
 	cout << endl;
 
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 8; i++) {
 		cout << A_Type[i] << " ";
 	}
 	cout << endl;
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 6; i++) {
 		cout << A_Weapon[i] << " ";
 	}
 	cout << endl;
