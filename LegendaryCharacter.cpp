@@ -9,7 +9,7 @@ LegendaryCharacter::LegendaryCharacter(char* name, const char* location, Element
 	strcpy(m_signatureWeapon, signeture);
 }
 
-void LegendaryCharacter::printCharacter() {
+void LegendaryCharacter::printCharacter() { // Special Print with signature weapon.
 	cout << getName() << "\t"
 		<< getLocation() << "\t"
 		<< getElementType() << "\t"
@@ -19,6 +19,6 @@ void LegendaryCharacter::printCharacter() {
 		<< getSignatureWeapon() << endl;
 }
 
-int LegendaryCharacter::Attack() {
+int LegendaryCharacter::Attack() { // No need to explain.
 	return 40;
 }

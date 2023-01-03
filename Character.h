@@ -20,11 +20,11 @@ public:
 	~Character();
 
 	//---      Methods      ---//
-	virtual int Attack();
-	virtual void PrintCharacter();
-	int locationInNumber();
-	const char* enumElementToText();
-	const char* enumWeaponToText();
+	virtual int Attack(); // No need to explain.
+	virtual void PrintCharacter(); // Printing character info in one line.
+	int locationInNumber(); // Returning location as a number.
+	const char* enumElementToText(); // Returning the enum as a text.
+	const char* enumWeaponToText(); // Returning the enum as a text.
 
 	//--- Getters & setters ---//
 	char* getName() { return m_name; }

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Player::Player() {
+Player::Player() { // Con's
 	cout << "Pease write your user name: ";
 	char* tempUsername = new char[20];
 	cin >> tempUsername;
@@ -24,7 +24,7 @@ Player::Player() {
 	m_num_of_dataChars = 0;
 }
 
-Player::~Player() {
+Player::~Player() { // D'or
 	delete m_userName;
 	delete[] m_activeCharacters;
 	int i = 0;
@@ -34,7 +34,7 @@ Player::~Player() {
 	delete[] m_dataCharacters;
 }
 
-void Player::addCharacter() {
+void Player::addCharacter() { // Adding new character to data.
 	cout << "Please write your character name: ";
 	char* temp_name = new char[20];
 	cin >> temp_name;
@@ -77,7 +77,7 @@ void Player::addCharacter() {
 	return;
 }
 
-Character* Player::selectCharacter() {
+Character* Player::selectCharacter() { // Select character from data and returns pointer.
 	Character** temptr = getDataCharacter();
 	cout << "*********************" << endl
 		<< "data characters menu:" << endl
@@ -97,7 +97,7 @@ Character* Player::selectCharacter() {
 	return temptr[choose-1];
 }
 
-void Player::setCharacterToActive() {
+void Player::setCharacterToActive() { // Set an active slot with pointer to data character.
 	if (getDataCharacter() == nullptr) {
 		cout << "No Data Characters" << endl;
 		return;
@@ -118,7 +118,7 @@ void Player::setCharacterToActive() {
 	tempActive[choose - 1] = selectedChar;
 }
 
-void Player::changeWeapon() {
+void Player::changeWeapon() { // Set new weapon type to character.
 	Character** selected;
 	Character* ptr = nullptr;
 	int choose = 0;
@@ -174,7 +174,7 @@ void Player::changeWeapon() {
 	cout << "Weapon has changed seccessfully" << endl;
 }
 
-Weapon Player::chooseWeapon() {
+Weapon Player::chooseWeapon() { // Print options and return weapon value by choice.
 	int weapon_choose = 0;
 		do {
 			cout << "Choose Weapon: " << endl
@@ -205,7 +205,7 @@ Weapon Player::chooseWeapon() {
 		}
 }
 
-const char* Player::chooselocation() {
+const char* Player::chooselocation() { // Print options and return the location name.
 	int loc_choose = 0;
 	do {
 		cout << "Choose location: " << endl
@@ -237,7 +237,7 @@ const char* Player::chooselocation() {
 	}
 }
 
-Element Player::chooseElement() {
+Element Player::chooseElement() { // Print options and return element value by choice.
 
 	int type_choose = 0;
 	do {
@@ -273,11 +273,16 @@ Element Player::chooseElement() {
 	}
 }
 
-void Player::evaluate() {
+void Player::evaluate() { // Evaluate all active characters as a team.
 	int A_Location[6] = {0}, A_Type[8] = {0}, A_Weapon[6] = {0};
-	int* Arr_locate = A_Location, * Arr_Elem = A_Type, * Arr_Weap = A_Weapon;
+	int* Arr_locate = A_Location;
+	int* Arr_Elem = A_Type;
+	int* Arr_Weap = A_Weapon;
 	Character** temp_char_array = getActiveCharacter();
 
+	cout << "******************" << endl
+		<< "Printing evaluate:" << endl
+		<< "******************" << endl;
 	for (int i = 0; i < 4; i++) {
 		if (temp_char_array[i] == nullptr) {
 			cout << "*---FREE SPACE---*" << endl;
@@ -286,7 +291,7 @@ void Player::evaluate() {
 		temp_char_array[i]->PrintCharacter();
 		A_Location[temp_char_array[i]->locationInNumber()]++;
 		A_Type[temp_char_array[i]->getElementType()]++;
-		A_Weapon[temp_char_array[i]->getWeaponType()]++;
+		//A_Weapon[temp_char_array[i]->getWeaponType()]++;
 	}
 
 	for (int i = 0; i < 6; i++) {
@@ -308,12 +313,12 @@ void Player::evaluate() {
 	cout << endl << endl;
 	printElementsResaults(Arr_Elem);
 	cout << endl << endl;
-
+	printWeaponsActives();
 
 	return;
 }
 
-void Player::printLocationResaults(int* locationArr) {
+void Player::printLocationResaults(int* locationArr) { // Sub-function that printing from list the locations resaults for evaluating.
 	for (int i = 1; i < 6; i++) {
 		if (locationArr[i] > 1)
 			cout << locationArr[i] << " characters from the same location:" << endl
@@ -321,11 +326,11 @@ void Player::printLocationResaults(int* locationArr) {
 	}
 }
 
-void Player::printElementsResaults(int* elementArr) {
+void Player::printElementsResaults(int* elementArr) { // Sub-function that printing from list the elements resaults for evaluating.
 	for (int i = 1; i < 8; i++) {
 		if (elementArr[i] > 1)
-			cout << elementArr[i] << " characters are" << elementEnumToText(i) << "elements:" << endl
-			<< "Adding " << (elementArr[i])* (10) << "% " << elementEnumToText(i) << " power!" << endl << endl;
+			cout << elementArr[i] << " characters are " << indexElementToText(i) << " elements:" << endl
+			<< "Adding " << (elementArr[i])* (10) << "% " << indexElementToText(i) << " power!" << endl << endl;
 	}
 	cout << "Passable Elements Reactions:" << endl;
 	if (elementArr[1] > 0 && elementArr[3] > 0) { // Ameno + Cyro - combination.
@@ -378,7 +383,7 @@ void Player::printElementsResaults(int* elementArr) {
 	}
 }
 
-void Player::printWeaponsActives() {
+void Player::printWeaponsActives() { // Sub-function that printing the weapons uses for evaluating.
 	Character** tempchar = getActiveCharacter();
 	for (int i = 0; i < 4; i++) {
 		if (tempchar[i] == nullptr) {
@@ -411,5 +416,38 @@ void Player::printWeaponsActives() {
 				break;
 			}
 		}
+	}
+}
+
+const char* Player::indexElementToText(int index) { // Converting the type of element to text.
+	switch (index)
+	{
+	case Uninitialized:
+		return "---";
+		break;
+	case Ameno:
+		return "Ameno";
+		break;
+	case Pyro:
+		return "Pyro";
+		break;
+	case Cyro:
+		return "Pyro";
+		break;
+	case Hydro:
+		return "Hydro";
+		break;
+	case Electro:
+		return "Electro";
+		break;
+	case Geo:
+		return "Gro";
+		break;
+	case Dendro:
+		return "Dentro";
+		break;
+	default:
+		return "Err";
+		break;
 	}
 }

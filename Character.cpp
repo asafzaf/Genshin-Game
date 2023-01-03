@@ -26,11 +26,11 @@ Character::~Character() {
 }
 
 //---      Methods      ---//
-int Character::Attack() {
+int Character::Attack() { // No need to explain.
 	return 10;
 }
 
-void Character::PrintCharacter() {
+void Character::PrintCharacter() { // Printing character info in one line.
 	int stars = getStars();
 	cout << getName() << "\t"
 		<< getLocation() << "\t"
@@ -43,7 +43,7 @@ void Character::PrintCharacter() {
 	cout << endl;
 }
 
-int Character::locationInNumber() {
+int Character::locationInNumber() { // Returning location as a number.
 	const char* tempchar = getLocation();
 	if (tempchar == "Europe") {
 		return 0;
@@ -63,7 +63,7 @@ int Character::locationInNumber() {
 	else return -1;
 }
 
-const char* Character::enumElementToText() {
+const char* Character::enumElementToText() { // Returning the enum as a text.
 	switch (m_type)
 	{
 	case Uninitialized:
@@ -95,7 +95,8 @@ const char* Character::enumElementToText() {
 		break;
 	}
 }
-const char* Character::enumWeaponToText() {
+
+const char* Character::enumWeaponToText() { // Returning the enum as a text.
 	switch (m_weaponType)
 	{
 	case unarmed:
@@ -120,4 +121,4 @@ const char* Character::enumWeaponToText() {
 		return "Err";
 		break;
 	}
-}
+} 

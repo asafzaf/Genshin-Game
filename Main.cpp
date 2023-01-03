@@ -6,12 +6,16 @@
 
 using namespace std;
 
-int main() {
+int main() { // main process.
 
-	Player* player = new Player();
+	cout << "*****************************" << endl
+		<< "Hello and welcome to Genshin!" << endl
+		<< "*****************************" << endl;
+
+	Player* player = new Player(); // creating new player (User).
 
 	int choice = -1;
-	while (choice > 5 || choice < 0) {
+	while (choice > 4 || choice < 0) {
 
 		//Main menu
 		cout << "************************" << endl
@@ -31,28 +35,25 @@ int main() {
 			cout << "Bye!";
 			return 0;
 		case 1:
-			player->addCharacter();
+			player->addCharacter(); // function for add caracter to data.
 			choice = -1;
 			break;
 		case 2:
-			player->changeWeapon();
+			player->changeWeapon(); // function for change weapon for character
 			choice = -1;
 			break;
 		case 3:
-			player->setCharacterToActive();
+			player->setCharacterToActive(); // function for set one of the data characters to active.
 			choice = -1;
 			break;
 		case 4:
-			player->evaluate();
+			player->evaluate(); // function for evaluate active characters as a team.
 			choice = -1;
 			break;
-		case 5: // for tests
-			choice = -1;
-			cout << player->getUserName() << endl;
 		default:
 			cout << "Invalid choice! please try again..." << endl;
 			choice = -1;
+			break;
 		}
 	}
-	return 0;
 }

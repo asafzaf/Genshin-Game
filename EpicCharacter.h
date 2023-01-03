@@ -9,5 +9,5 @@
 class EpicCharacter : public Character {
 public:
 	EpicCharacter(char* name, const char* location, Element E_type, Weapon W_type, char* eq_wea, int star);
-	int Attack();
+	int Attack(); // No need to explain.
 };
