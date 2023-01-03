@@ -291,22 +291,8 @@ void Player::evaluate() { // Evaluate all active characters as a team.
 		temp_char_array[i]->PrintCharacter();
 		A_Location[temp_char_array[i]->locationInNumber()]++;
 		A_Type[temp_char_array[i]->getElementType()]++;
-		//A_Weapon[temp_char_array[i]->getWeaponType()]++;
 	}
 
-	for (int i = 0; i < 6; i++) {
-		cout << A_Location[i] << " ";
-	}
-	cout << endl;
-
-	for (int i = 0; i < 8; i++) {
-		cout << A_Type[i] << " ";
-	}
-	cout << endl;
-
-	for (int i = 0; i < 6; i++) {
-		cout << A_Weapon[i] << " ";
-	}
 	cout << endl;
 
 	printLocationResaults(Arr_locate);

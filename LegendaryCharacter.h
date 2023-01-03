@@ -14,5 +14,6 @@ public:
 	void printCharacter(); // Special Print with signature weapon.
 	int Attack(); // No need to explain.
 
+	//--- Getters & setters ---//
 	char* getSignatureWeapon() { return m_signatureWeapon; }
 };
