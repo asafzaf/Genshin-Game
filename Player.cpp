@@ -34,6 +34,9 @@ Player::~Player() { // D'or
 	delete[] m_dataCharacters;
 }
 
+
+//---      Methods      ---//
+
 void Player::addCharacter() { // Adding new character to data.
 	cout << "Please write your character name: ";
 	char* temp_name = new char[20];
@@ -282,15 +285,16 @@ void Player::evaluate() { // Evaluate all active characters as a team.
 
 	cout << "******************" << endl
 		<< "Printing evaluate:" << endl
-		<< "******************" << endl;
+		<< "******************" << endl << endl;
 	for (int i = 0; i < 4; i++) {
 		if (temp_char_array[i] == nullptr) {
-			cout << "*---FREE SPACE---*" << endl;
 			continue;
 		}
-		temp_char_array[i]->PrintCharacter();
-		A_Location[temp_char_array[i]->locationInNumber()]++;
-		A_Type[temp_char_array[i]->getElementType()]++;
+		else {
+			temp_char_array[i]->Attack();
+			A_Location[temp_char_array[i]->locationInNumber()]++;
+			A_Type[temp_char_array[i]->getElementType()]++;
+		}
 	}
 
 	cout << endl;
@@ -299,7 +303,6 @@ void Player::evaluate() { // Evaluate all active characters as a team.
 	cout << endl << endl;
 	printElementsResaults(Arr_Elem);
 	cout << endl << endl;
-	printWeaponsActives();
 
 	return;
 }
@@ -369,41 +372,6 @@ void Player::printElementsResaults(int* elementArr) { // Sub-function that print
 	}
 }
 
-void Player::printWeaponsActives() { // Sub-function that printing the weapons uses for evaluating.
-	Character** tempchar = getActiveCharacter();
-	for (int i = 0; i < 4; i++) {
-		if (tempchar[i] == nullptr) {
-			continue;
-		}
-		else {
-			Weapon tempweap = tempchar[i]->getWeaponType();
-			switch (tempweap)
-			{
-			case unarmed:
-				cout << "Err";
-				break;
-			case Sword:
-				cout << tempchar[i]->getName() << " swing swiftly the sword." << endl;
-				break;
-			case Polearm:
-				cout << tempchar[i]->getName() << " agile with polearm." << endl;
-				break;
-			case Catalyst:
-				cout << tempchar[i]->getName() << " cast spells with catalyst." << endl;
-				break;
-			case Claymore:
-				cout << tempchar[i]->getName() << " swing the heavy claymore." << endl;
-				break;
-			case Bow:
-				cout << tempchar[i]->getName() << " shot from afar with the bow." << endl;
-				break;
-			default:
-				cout << "Err";
-				break;
-			}
-		}
-	}
-}
 
 const char* Player::indexElementToText(int index) { // Converting the type of element to text.
 	switch (index)

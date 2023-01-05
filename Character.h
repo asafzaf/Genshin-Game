@@ -25,6 +25,8 @@ public:
 	int locationInNumber(); // Returning location as a number.
 	const char* enumElementToText(); // Returning the enum as a text.
 	const char* enumWeaponToText(); // Returning the enum as a text.
+	void printWeaponsActive(); // Sub-function that printing the weapons uses for evaluating.
+
 
 	//--- Getters & setters ---//
 	char* getName() { return m_name; }

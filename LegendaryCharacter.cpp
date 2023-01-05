@@ -20,5 +20,7 @@ void LegendaryCharacter::printCharacter() { // Special Print with signature weap
 }
 
 int LegendaryCharacter::Attack() { // No need to explain.
-	return 40;
+	printWeaponsActive();
+	cout << getName() << " has a Signature Weapon equipped! Double demage!" << endl << endl;
+	return 20;
 }

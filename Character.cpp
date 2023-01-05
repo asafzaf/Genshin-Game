@@ -27,6 +27,7 @@ Character::~Character() {
 
 //---      Methods      ---//
 int Character::Attack() { // No need to explain.
+	printWeaponsActive();
 	return 10;
 }
 
@@ -122,3 +123,30 @@ const char* Character::enumWeaponToText() { // Returning the enum as a text.
 		break;
 	}
 } 
+
+void Character::printWeaponsActive() { // Sub-function that printing the weapons uses for evaluating.
+	switch (m_weaponType)
+	{
+	case unarmed:
+		cout << "Err" << endl << endl;
+		break;
+	case Sword:
+		cout << getName() << " swing swiftly the sword." << endl << endl;
+		break;
+	case Polearm:
+		cout << getName() << " agile with polearm." << endl << endl;
+		break;
+	case Catalyst:
+		cout << getName() << " cast spells with catalyst." << endl << endl;
+		break;
+	case Claymore:
+		cout << getName() << " swing the heavy claymore." << endl << endl;
+		break;
+	case Bow:
+		cout << getName() << " shot from afar with the bow." << endl << endl;
+		break;
+	default:
+		cout << "Err" << endl << endl;
+		break;
+	}
+}
